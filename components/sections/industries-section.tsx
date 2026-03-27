@@ -9,7 +9,7 @@ export function IndustriesSection() {
   return (
     <section
       id="industries"
-      className="py-20 md:py-32 px-6 relative overflow-hidden border-y border-white/5"
+      className="py-20 md:py-32 px-6 relative overflow-hidden border-y border-white/5 scroll-mt-32"
     >
       <div className="absolute inset-0 noise-overlay opacity-10" />
       <div className="absolute top-0 left-1/4 w-[400px] h-[400px] bg-indigo-500/5 blur-[200px] rounded-full pointer-events-none" />

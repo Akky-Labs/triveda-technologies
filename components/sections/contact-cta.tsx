@@ -13,7 +13,7 @@ export function ContactCTA() {
   ];
 
   return (
-    <section id="contact" className="py-24 px-6 relative overflow-hidden">
+    <section id="contact" className="py-24 px-6 relative overflow-hidden scroll-mt-32">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 40 }}

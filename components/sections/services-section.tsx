@@ -34,7 +34,7 @@ export function ServicesSection() {
   const x = useTransform(scrollYProgress, [0, 1], [0, -scrollRange]);
 
   return (
-    <section ref={targetRef} className="relative h-[500vh] bg-[#030712]">
+    <section id="services" ref={targetRef} className="relative h-[500vh] bg-[#030712] scroll-mt-32">
       <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden">
         <div className="absolute top-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-indigo-500/20 to-transparent" />
 

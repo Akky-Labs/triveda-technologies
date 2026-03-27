@@ -60,6 +60,7 @@ export const VALUES_DATA = [
 export const NAV_LINKS = [
   { label: "About", href: "#about" },
   { label: "Services", href: "#services" },
+  { label: "Process", href: "#process" },
   { label: "Why Us", href: "#why-us" },
   { label: "Industries", href: "#industries" },
   { label: "Contact", href: "#contact" },

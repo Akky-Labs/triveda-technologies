@@ -7,7 +7,7 @@ import { WORKFLOW_STEPS } from "@/lib/data";
 
 export function WorkflowSection() {
   return (
-    <section className="py-20 md:py-32 relative overflow-hidden">
+    <section id="process" className="py-20 md:py-32 relative overflow-hidden scroll-mt-32">
       <div className="absolute inset-0 bg-linear-to-b from-transparent via-indigo-500/2 to-transparent pointer-events-none" />
 
       <div className="max-w-6xl mx-auto px-6 relative z-10">

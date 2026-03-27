@@ -10,7 +10,7 @@ export function FAQSection() {
   const [open, setOpen] = useState(0);
 
   return (
-    <section id="faq" className="py-20 md:py-32 px-6 relative overflow-hidden bg-[#030712]">
+    <section id="faq" className="py-20 md:py-32 px-6 relative overflow-hidden bg-[#030712] scroll-mt-32">
       <div className="absolute inset-0 noise-overlay opacity-[0.03]" />
 
       <div className="max-w-4xl mx-auto relative z-10">

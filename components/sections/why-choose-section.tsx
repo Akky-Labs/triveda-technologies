@@ -6,7 +6,7 @@ import { WHY_CHOOSE_DATA } from "@/lib/data";
 
 export function WhyChooseSection() {
   return (
-    <section id="why-choose" className="py-20 md:py-32 px-6 relative overflow-hidden">
+    <section id="why-us" className="py-20 md:py-32 px-6 relative overflow-hidden scroll-mt-32">
       <div className="absolute inset-0 noise-overlay opacity-[0.03]" />
 
       <div className="max-w-7xl mx-auto relative z-10">
