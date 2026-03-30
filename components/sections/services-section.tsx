@@ -6,7 +6,7 @@ import {
   useTransform,
   useScroll,
 } from "framer-motion";
-import { SERVICES_DATA } from "@/lib/data";
+import { SERVICES_DATA, SERVICES_SECTION_DATA } from "@/lib/data";
 import { ServiceCard } from "@/components/ui/service-card";
 
 export function ServicesSection() {
@@ -46,18 +46,22 @@ export function ServicesSection() {
             transition={{ duration: 0.6 }}
             className="flex flex-col md:flex-row md:items-end justify-between gap-6"
           >
-            <div>
+            <div className="max-w-2xl">
               <div className="inline-block px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-[11px] font-bold tracking-[0.25em] text-indigo-400 uppercase mb-4">
                 What We Do
               </div>
               <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-white mb-6 leading-[1.2]">
-                Our Core <span className="text-gradient">Services</span>
+                {SERVICES_SECTION_DATA.heading.split(' ').slice(0, -2).join(' ')}{" "}
+                <span className="text-gradient">
+                  {SERVICES_SECTION_DATA.heading.split(' ').slice(-2).join(' ')}
+                </span>
               </h2>
+              <p className="text-zinc-400 text-lg leading-relaxed">
+                {SERVICES_SECTION_DATA.intro}
+              </p>
             </div>
-            <p className="text-zinc-500 text-sm md:text-base max-w-md leading-relaxed hidden sm:block">
-              Full-spectrum digital solutions engineered for enterprise scale and
-              startup agility. Scroll to explore our capabilities.
-            </p>
+
+
           </motion.div>
         </div>
 

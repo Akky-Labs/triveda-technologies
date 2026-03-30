@@ -27,7 +27,7 @@ export function CinematicPanel({ children, index }: CinematicPanelProps) {
   return (
     <div
       ref={ref}
-      className="md:sticky top-0 md:min-h-screen flex items-center py-10 md:py-0"
+      className="relative md:sticky top-0 md:min-h-screen flex items-center py-10 md:py-0"
       style={{ zIndex: index + 1 }}
     >
       <motion.div
@@ -36,7 +36,7 @@ export function CinematicPanel({ children, index }: CinematicPanelProps) {
           opacity: typeof window !== 'undefined' && window.innerWidth < 768 ? 1 : opacity,
           boxShadow: shadow,
         }}
-        className="w-full origin-top overflow-hidden bg-[#030712] rounded-2xl md:rounded-[3rem]"
+        className="relative w-full origin-top overflow-hidden bg-[#030712] rounded-2xl md:rounded-[3rem]"
       >
         {children}
       </motion.div>

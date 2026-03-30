@@ -24,7 +24,7 @@ export function ContactCTA() {
         >
           <div className="absolute inset-0 bg-linear-to-br from-indigo-600/10 via-transparent to-violet-600/10 opacity-50 group-hover/card:opacity-100 transition-opacity duration-700" />
           
-          <div className="absolute inset-0 p-[1px] bg-linear-to-br from-white/20 via-white/10 to-white/20 rounded-[2.5rem]">
+          <div className="absolute inset-0 p-px bg-linear-to-br from-white/20 via-white/10 to-white/20 rounded-[2.5rem]">
             <div className="absolute inset-0 bg-[#030712] rounded-[calc(2.5rem-1px)]" />
           </div>
 
@@ -41,12 +41,12 @@ export function ContactCTA() {
                   transition={{ delay: 0.2 }}
                 >
                   <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight leading-[1.1]">
-                    Ready to transform <br />
-                    <span className="text-gradient">your business?</span>
+                    Let’s Build <br />
+                    <span className="text-gradient">Something Great</span> Together
                   </h2>
                   <p className="text-lg text-zinc-400 mb-10 max-w-lg mx-auto lg:mx-0 leading-relaxed">
-                    Join forward-thinking companies that trust {SITE_DATA.name} 
-                    to engineer their next-generation digital presence.
+                    Have a project in mind or looking to scale your business with technology? 
+                    Get in touch with our team.
                   </p>
                 </motion.div>
 
@@ -86,7 +86,7 @@ export function ContactCTA() {
                       <item.icon className="w-5 h-5" />
                     </div>
                     <div>
-                      <div className="text-[10px] text-zinc-500 uppercase tracking-[0.1em] font-semibold mb-0.5">
+                      <div className="text-[10px] text-zinc-500 uppercase tracking-widest font-semibold mb-0.5">
                         {item.label}
                       </div>
                       <a

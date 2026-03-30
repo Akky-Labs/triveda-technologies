@@ -56,19 +56,14 @@ export function HeroContent({ opacity, y }: HeroContentProps) {
         </span>
       </motion.h1>
 
-      <motion.div
+      <motion.p
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.3 }}
-        className="flex flex-wrap items-center justify-center gap-3 text-sm text-zinc-400 font-medium"
+        className="text-lg text-zinc-400 max-w-2xl mx-auto leading-relaxed"
       >
-        {HERO_DATA.tags.map((tag, i) => (
-          <React.Fragment key={tag}>
-            {i > 0 && <span className="text-indigo-500/50">·</span>}
-            <span className="hover:text-white transition-colors">{tag}</span>
-          </React.Fragment>
-        ))}
-      </motion.div>
+        {(HERO_DATA as any).subtext}
+      </motion.p>
 
       <motion.div
         initial={{ opacity: 0, y: 20 }}

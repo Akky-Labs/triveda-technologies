@@ -27,11 +27,11 @@ export function PortalRevealSection({ children }: PortalRevealSectionProps) {
     <div ref={ref} className="relative z-10 overflow-hidden py-10">
       <motion.div
         style={{ clipPath, opacity }}
-        className="relative"
+        className="relative block w-full h-full"
       >
-        <motion.div>
+        <div className="relative">
           {children}
-        </motion.div>
+        </div>
       </motion.div>
     </div>
   );

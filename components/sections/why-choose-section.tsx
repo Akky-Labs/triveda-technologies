@@ -18,11 +18,11 @@ export function WhyChooseSection() {
           className="text-center mb-20"
         >
           <div className="inline-block px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-[11px] font-bold tracking-[0.25em] text-indigo-400 uppercase mb-6">
-            Elite Engineering
+            Why Choose Us
           </div>
           <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-white mb-6 leading-[1.2]">
-            Engineering Excellence{" "}
-            <span className="text-gradient">By Design</span>
+            Why Choose{" "}
+            <span className="text-gradient">Triveda?</span>
           </h2>
         </motion.div>
 

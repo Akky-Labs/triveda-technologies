@@ -1,19 +1,23 @@
 "use client";
 
 import React, { useEffect } from "react";
+import dynamic from "next/dynamic";
 import { useMagneticCursor } from "@/hooks/use-magnetic-cursor";
 import { BackgroundGradient } from "@/components/sections/background-gradient";
 import { Navbar } from "@/components/sections/navbar";
 import { HeroSection } from "@/components/sections/hero-section";
 import { AboutSection } from "@/components/sections/about-section";
-import { ServicesSection } from "@/components/sections/services-section";
-import { WorkflowSection } from "@/components/sections/workflow-section";
-import { WhyChooseSection } from "@/components/sections/why-choose-section";
-import { StatsSection } from "@/components/sections/stats-section";
-import { IndustriesSection } from "@/components/sections/industries-section";
-import { FAQSection } from "@/components/sections/faq-section";
-import { ContactCTA } from "@/components/sections/contact-cta";
-import { Footer } from "@/components/sections/footer";
+
+const ServicesSection = dynamic(() => import("@/components/sections/services-section").then(mod => mod.ServicesSection), { ssr: true });
+const WorkflowSection = dynamic(() => import("@/components/sections/workflow-section").then(mod => mod.WorkflowSection), { ssr: true });
+const WhyChooseSection = dynamic(() => import("@/components/sections/why-choose-section").then(mod => mod.WhyChooseSection), { ssr: true });
+const TeamSection = dynamic(() => import("@/components/sections/team-section").then(mod => mod.TeamSection), { ssr: true });
+const StatsSection = dynamic(() => import("@/components/sections/stats-section").then(mod => mod.StatsSection), { ssr: true });
+const IndustriesSection = dynamic(() => import("@/components/sections/industries-section").then(mod => mod.IndustriesSection), { ssr: true });
+const FAQSection = dynamic(() => import("@/components/sections/faq-section").then(mod => mod.FAQSection), { ssr: true });
+const ContactCTA = dynamic(() => import("@/components/sections/contact-cta").then(mod => mod.ContactCTA), { ssr: true });
+const Footer = dynamic(() => import("@/components/sections/footer").then(mod => mod.Footer), { ssr: true });
+
 import { FloatingActions } from "@/components/ui/floating-actions";
 import { CinematicPanel } from "@/components/ui/cinematic-panel";
 import { PortalRevealSection } from "@/components/ui/portal-reveal";
@@ -53,6 +57,8 @@ export default function HomePage() {
           <WhyChooseSection />
         </CinematicPanel>
       </div>
+
+      <TeamSection />
 
       <ParallaxTextStrip />
       <StatsSection />

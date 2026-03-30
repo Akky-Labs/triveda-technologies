@@ -51,11 +51,12 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${inter.variable} ${outfit.variable} ${jetbrainsMono.variable} antialiased`}
+      suppressHydrationWarning
     >
       <head>
         <link rel="canonical" href="https://trivedatechnologies.com" />
       </head>
-      <body className="min-h-screen bg-[#030712] text-zinc-200 overflow-x-hidden">
+      <body className="min-h-screen bg-[#030712] text-zinc-200 overflow-x-hidden" suppressHydrationWarning>
         <SmoothScrollWrapper>
           {children}
         </SmoothScrollWrapper>

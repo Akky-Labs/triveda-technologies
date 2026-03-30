@@ -4,6 +4,7 @@ import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { HeroContent } from "./hero/hero-content";
 import { DashboardPreview } from "./hero/dashboard-preview";
+import { TrustStrip } from "./hero/trust-strip";
 
 export function HeroSection() {
   const ref = useRef<HTMLDivElement>(null);
@@ -26,6 +27,7 @@ export function HeroSection() {
       <BackgroundParticles />
       <HeroContent opacity={contentOpacity} y={contentY} />
       <DashboardPreview scale={dashboardScale} />
+      <TrustStrip />
     </section>
   );
 }
