@@ -590,21 +590,21 @@ export const WHY_CHOOSE_DATA = [
 
 export const TEAM_DATA = [
   {
-    name: "Aman Tripathi",
+    name: "User 1",
     role: "Founder & CEO",
     specialization: "Product & Strategy",
     image: "/team/aman.jpg",
     linkedin: "#",
   },
   {
-    name: "Akshay Singh",
+    name: "User 2",
     role: "Co-Founder & CTO",
     specialization: "Technology & AI",
     image: "/team/akshay.jpg",
     linkedin: "#",
   },
   {
-    name: "Rahul Mehra",
+    name: "User 3",
     role: "Head of Growth",
     specialization: "Digital Transformation",
     image: "/team/rahul.jpg",

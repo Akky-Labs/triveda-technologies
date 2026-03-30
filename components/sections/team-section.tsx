@@ -3,8 +3,8 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { TEAM_DATA } from "@/lib/data";
-import { ExternalLink, Users } from "lucide-react";
-import Image from "next/image";
+import { ExternalLink, Users, User } from "lucide-react";
+
 
 export function TeamSection() {
   return (
@@ -39,13 +39,12 @@ export function TeamSection() {
               className="group relative"
             >
               <div className="relative aspect-4/5 rounded-[2rem] overflow-hidden bg-white/2 border border-white/5 group-hover:border-indigo-500/30 transition-all duration-500">
-                <Image
-                  src={member.image}
-                  alt={member.name}
-                  fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  className="object-cover transition-transform duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0"
-                />
+                <div className="absolute inset-0 flex items-center justify-center bg-zinc-900/50 group-hover:bg-indigo-900/10 transition-colors duration-500">
+                  <div className="relative">
+                    <div className="absolute -inset-8 bg-indigo-500/10 blur-3xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                    <User className="w-24 h-24 text-zinc-700 group-hover:text-indigo-400 transition-all duration-500 group-hover:scale-110 relative z-10" />
+                  </div>
+                </div>
                 <div className="absolute inset-0 bg-linear-to-t from-[#030712] via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
                 
                 <div className="absolute bottom-0 left-0 right-0 p-8 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
