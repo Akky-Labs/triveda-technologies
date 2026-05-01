@@ -26,7 +26,7 @@ import {
 export const SITE_DATA = {
   name: "NexGen Digital",
   contact: {
-    whatsapp: "919876543210",
+    whatsapp: "918709412383",
   },
 };
 
@@ -636,10 +636,10 @@ export const FAQS_DATA = [
 ];
 
 export const CONTACT_INFO = {
-  email: "hello@nexgendigital.io",
-  phone: "+919876543210",
-  phoneDisplay: "+91 9876 543 210",
-  whatsapp: "919876543210",
+  email: "akkylabs@outlook.com",
+  phone: "+918709412383",
+  phoneDisplay: "+91 87094 12383",
+  whatsapp: "918709412383",
   linkedin: "https://www.linkedin.com/company/nexgen-digital",
   address: "12th Floor, Cyber Hub Tower, Sector 24, Gurugram – 122002",
 };

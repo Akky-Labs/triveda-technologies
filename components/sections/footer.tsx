@@ -113,13 +113,17 @@ export function Footer() {
             © {new Date().getFullYear()} {SITE_DATA.name}. All rights
             reserved.
           </p>
-          <div className="flex gap-6 text-xs text-zinc-600">
+          <div className="flex items-center gap-6 text-xs text-zinc-600">
             <a href="#" className="hover:text-white transition-colors">
               Privacy Policy
             </a>
             <a href="#" className="hover:text-white transition-colors">
               Terms of Service
             </a>
+            <div className="w-px h-3 bg-white/10 hidden sm:block" />
+            <span className="flex items-center gap-1.5 whitespace-nowrap">
+              Made with <span className="text-red-500">❤️</span> by <a href="https://www.akkylabs.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-indigo-400 font-bold transition-colors">Akky Labs</a>
+            </span>
           </div>
         </div>
       </div>
