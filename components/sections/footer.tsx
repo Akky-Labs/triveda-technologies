@@ -14,7 +14,7 @@ export function Footer() {
               <div className="relative w-10 h-10">
                 <div className="absolute inset-0 bg-white/5 border border-white/10 rounded-xl" />
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <span className="text-lg font-black text-gradient">T</span>
+                  <span className="text-lg font-black text-gradient">N</span>
                 </div>
               </div>
               <div>
@@ -24,8 +24,8 @@ export function Footer() {
               </div>
             </div>
             <p className="text-sm text-zinc-500 leading-relaxed max-w-sm mb-6">
-              Engineering intelligent digital ecosystems for forward-thinking
-              organizations worldwide. Your vision, our expertise.
+              Building intelligent digital ecosystems for ambitious
+              organizations worldwide. Your vision, our AI-powered expertise.
             </p>
             <div className="flex gap-3">
               {[

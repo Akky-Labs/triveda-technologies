@@ -11,7 +11,7 @@ import { AboutSection } from "@/components/sections/about-section";
 const ServicesSection = dynamic(() => import("@/components/sections/services-section").then(mod => mod.ServicesSection), { ssr: true });
 const WorkflowSection = dynamic(() => import("@/components/sections/workflow-section").then(mod => mod.WorkflowSection), { ssr: true });
 const WhyChooseSection = dynamic(() => import("@/components/sections/why-choose-section").then(mod => mod.WhyChooseSection), { ssr: true });
-const TeamSection = dynamic(() => import("@/components/sections/team-section").then(mod => mod.TeamSection), { ssr: true });
+const ImageTrail = dynamic(() => import("@/components/ui/image-trail"), { ssr: false });
 const StatsSection = dynamic(() => import("@/components/sections/stats-section").then(mod => mod.StatsSection), { ssr: true });
 const IndustriesSection = dynamic(() => import("@/components/sections/industries-section").then(mod => mod.IndustriesSection), { ssr: true });
 const FAQSection = dynamic(() => import("@/components/sections/faq-section").then(mod => mod.FAQSection), { ssr: true });
@@ -58,7 +58,7 @@ export default function HomePage() {
         </CinematicPanel>
       </div>
 
-      <TeamSection />
+      <ImageTrail trailDistance={120} />
 
       <ParallaxTextStrip />
       <StatsSection />

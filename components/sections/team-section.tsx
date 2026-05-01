@@ -20,7 +20,7 @@ export function TeamSection() {
             Our Talent
           </div>
           <h2 className="text-3xl md:text-5xl font-bold text-white mb-4 md:mb-6">
-            Team <span className="text-gradient">Triveda</span>
+            Team <span className="text-gradient">NexGen</span>
           </h2>
           <p className="text-zinc-400 max-w-2xl mx-auto text-base md:text-lg leading-relaxed">
             Meet the strategic minds driving innovation and delivering growth for our clients.

@@ -1,12 +1,11 @@
-"use client";
-
-import React, { useCallback } from "react";
+import React, { useCallback, useState } from "react";
 import {
   motion,
   useSpring,
   useTransform,
   useMotionValue,
   MotionValue,
+  AnimatePresence,
 } from "framer-motion";
 import { DASHBOARD_DATA } from "@/lib/data";
 
@@ -15,6 +14,7 @@ interface DashboardPreviewProps {
 }
 
 export function DashboardPreview({ scale }: DashboardPreviewProps) {
+  const [activeTab, setActiveTab] = useState(0);
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
   const springX = useSpring(mouseX, { stiffness: 300, damping: 80 });
@@ -53,28 +53,44 @@ export function DashboardPreview({ scale }: DashboardPreviewProps) {
         }}
         className="relative rounded-2xl border border-white/10 bg-[#0a0f1c]/80 shadow-2xl shadow-indigo-500/5 backdrop-blur-sm aspect-4/5 sm:aspect-4/3 md:aspect-video group overflow-hidden"
       >
-        <WindowChrome title={DASHBOARD_DATA.title} />
+        <WindowChrome title={activeTab === 0 ? DASHBOARD_DATA.title : `NexGen — ${["Terminal", "Analytics", "Cloud", "Growth"][activeTab-1]}`} />
 
         <div className="p-3 pt-13 h-full w-full flex gap-3">
-          <Sidebar />
+          <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
 
-          <div className="flex-1 flex flex-col gap-3 min-w-0 overflow-hidden">
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 sm:gap-3 flex-1">
-              {DASHBOARD_DATA.projects.slice(0, 3).map((project, i) => (
-                <ProjectCard key={project.title} project={project} delay={0.3 + i * 0.15} />
-              ))}
-            </div>
+          <div className="flex-1 flex flex-col gap-3 min-w-0 overflow-hidden relative">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeTab}
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -20 }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
+                className="h-full w-full"
+              >
+                {activeTab === 0 && (
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 sm:gap-3 h-full content-start">
+                    {DASHBOARD_DATA.projects.map((project, i) => (
+                      <ProjectCard key={project.title} project={project} delay={i * 0.05} />
+                    ))}
+                  </div>
+                )}
 
-            <div className="hidden sm:grid sm:grid-cols-2 md:grid-cols-3 gap-2 sm:gap-3 flex-1">
-              {DASHBOARD_DATA.projects.slice(3, 6).map((project, i) => (
-                <ProjectCard key={project.title} project={project} delay={0.75 + i * 0.15} />
-              ))}
-            </div>
+                {activeTab === 1 && <EngineeringView />}
+                {activeTab === 2 && <AnalyticsView metrics={DASHBOARD_DATA.analytics} />}
+                {activeTab === 3 && <InfrastructureView />}
+                {activeTab === 4 && <MarketingView />}
+              </motion.div>
+            </AnimatePresence>
           </div>
         </div>
 
-        <AnalyticsWidget metrics={DASHBOARD_DATA.analytics} />
-        <TerminalWidget />
+        {activeTab === 0 && (
+          <>
+            <AnalyticsWidget metrics={DASHBOARD_DATA.analytics} />
+            <TerminalWidget />
+          </>
+        )}
 
         <div className="absolute inset-0 bg-linear-to-tr from-transparent via-white/3 to-transparent pointer-events-none rounded-2xl" />
         <div className="absolute left-0 right-0 h-px bg-linear-to-r from-transparent via-indigo-400/30 to-transparent pointer-events-none animate-scan-line" />
@@ -102,22 +118,150 @@ function WindowChrome({ title }: { title: string }) {
   );
 }
 
-function Sidebar() {
+function Sidebar({ activeTab, setActiveTab }: { activeTab: number, setActiveTab: (i: number) => void }) {
   const icons = [
-    <svg key="1" className="w-4 h-4 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>,
-    <svg key="2" className="w-4 h-4 text-zinc-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>,
-    <svg key="3" className="w-4 h-4 text-zinc-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg>,
-    <svg key="4" className="w-4 h-4 text-zinc-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></svg>,
-    <svg key="5" className="w-4 h-4 text-zinc-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path d="m3 11 18-5v12L3 13v-2z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg>
+    <svg key="1" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>,
+    <svg key="2" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>,
+    <svg key="3" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg>,
+    <svg key="4" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></svg>,
+    <svg key="5" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path d="m3 11 18-5v12L3 13v-2z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg>
   ];
 
   return (
     <div className="hidden md:flex flex-col gap-2.5 w-11 shrink-0 items-center pt-2 border-r border-white/5 pr-3">
       {icons.map((icon, i) => (
-        <div key={i} className={`w-9 h-9 rounded-xl flex items-center justify-center transition-all duration-500 ${i === 0 ? "border border-indigo-500/40 bg-indigo-500/10" : "hover:bg-white/5 border border-transparent hover:border-white/10"}`}>
+        <button 
+          key={i} 
+          onClick={() => setActiveTab(i)}
+          className={`w-9 h-9 rounded-xl flex items-center justify-center transition-all duration-500 group ${i === activeTab ? "border border-indigo-500/40 bg-indigo-500/10 text-indigo-400" : "hover:bg-white/5 border border-transparent hover:border-white/10 text-zinc-600 hover:text-zinc-400"}`}
+        >
           {icon}
-        </div>
+        </button>
       ))}
+    </div>
+  );
+}
+
+function EngineeringView() {
+  return (
+    <div className="h-full w-full p-6 rounded-2xl bg-black/40 border border-white/5 font-mono text-xs overflow-hidden">
+      <div className="flex items-center gap-2 mb-4 text-zinc-500">
+        <div className="w-2 h-2 rounded-full bg-emerald-500" />
+        <span>nexgen-core/main</span>
+        <span className="opacity-50">· 2m ago</span>
+      </div>
+      <div className="space-y-1.5 text-zinc-400">
+        <div className="text-indigo-400">const analytics = await NexGenAI.process({"{"}</div>
+        <div className="pl-4">stream: true,</div>
+        <div className="pl-4">models: ["vision", "language"],</div>
+        <div className="pl-4 text-emerald-400/80">// Deploying to production edge...</div>
+        <div className="pl-4">priority: "ultra"</div>
+        <div className="text-indigo-400">{"}"});</div>
+        <div className="mt-6 text-zinc-600 italic">// Building enterprise-grade digital systems</div>
+        <div className="text-zinc-500">$ nexgen deploy --env production</div>
+        <div className="text-emerald-500/80">✓ Optimization complete (2.4s)</div>
+        <div className="text-emerald-500/80">✓ Edge clusters synchronized</div>
+        <div className="text-indigo-400 font-bold">➜ Deployed to global nodes</div>
+      </div>
+    </div>
+  );
+}
+
+function AnalyticsView({ metrics }: { metrics: any }) {
+  return (
+    <div className="h-full w-full grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/5 flex flex-col justify-center">
+        <div className="text-3xl font-black text-white mb-1">{metrics.revenue}</div>
+        <div className="text-[10px] font-bold text-emerald-400 uppercase tracking-widest mb-4">Revenue Growth</div>
+        <div className="w-full h-24 flex items-end gap-1.5">
+          {[40, 70, 45, 90, 65, 80, 100].map((h, i) => (
+            <motion.div 
+              key={i}
+              initial={{ height: 0 }}
+              animate={{ height: `${h}%` }}
+              transition={{ delay: i * 0.1 }}
+              className="flex-1 bg-linear-to-t from-indigo-500/20 to-indigo-500/80 rounded-t-sm" 
+            />
+          ))}
+        </div>
+      </div>
+      <div className="grid grid-rows-2 gap-4">
+        <div className="p-4 rounded-xl bg-white/[0.02] border border-white/5">
+          <div className="text-xl font-bold text-white">{metrics.users}</div>
+          <div className="text-[9px] text-zinc-500 uppercase">Active Sessions</div>
+          <div className="mt-2 flex gap-1">
+            {[1,1,1,1,0,1,1,1,0].map((v, i) => (
+              <div key={i} className={`h-1 flex-1 rounded-full ${v ? "bg-indigo-500" : "bg-white/5"}`} />
+            ))}
+          </div>
+        </div>
+        <div className="p-4 rounded-xl bg-white/[0.02] border border-white/5">
+          <div className="text-xl font-bold text-white">{metrics.conversion}</div>
+          <div className="text-[9px] text-zinc-500 uppercase">Conv. Rate</div>
+          <div className="mt-2 h-1 w-full bg-white/5 rounded-full overflow-hidden">
+            <motion.div initial={{width:0}} animate={{width:"65%"}} className="h-full bg-violet-500" />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function InfrastructureView() {
+  return (
+    <div className="h-full w-full p-6 rounded-2xl bg-white/[0.02] border border-white/5">
+      <div className="flex items-center justify-between mb-6">
+        <h3 className="text-sm font-bold text-white">Global Nodes</h3>
+        <div className="px-2 py-1 rounded bg-emerald-500/10 border border-emerald-500/20 text-[9px] text-emerald-400 font-bold">All Systems Operational</div>
+      </div>
+      <div className="space-y-4">
+        {[
+          { name: "US-EAST (N. Virginia)", status: "Active", load: 24, ping: "12ms" },
+          { name: "EU-WEST (Dublin)", status: "Active", load: 18, ping: "45ms" },
+          { name: "AP-SOUTH (Mumbai)", status: "Active", load: 42, ping: "8ms" },
+        ].map((node, i) => (
+          <div key={i} className="flex items-center justify-between p-3 rounded-xl bg-white/2 border border-white/5">
+            <div className="flex items-center gap-3">
+              <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+              <span className="text-[11px] text-zinc-300 font-medium">{node.name}</span>
+            </div>
+            <div className="flex gap-4 items-center">
+              <span className="text-[10px] text-zinc-500">{node.ping}</span>
+              <div className="w-16 h-1 bg-white/5 rounded-full overflow-hidden">
+                <div className="h-full bg-indigo-500/50" style={{ width: `${node.load}%` }} />
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function MarketingView() {
+  return (
+    <div className="h-full w-full p-6 rounded-2xl bg-white/[0.02] border border-white/5 flex flex-col justify-center items-center text-center">
+      <div className="w-16 h-16 rounded-full bg-pink-500/10 border border-pink-500/20 flex items-center justify-center mb-4">
+        <svg className="w-8 h-8 text-pink-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path d="m3 11 18-5v12L3 13v-2z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg>
+      </div>
+      <h3 className="text-lg font-bold text-white mb-2">Growth Acceleration</h3>
+      <p className="text-xs text-zinc-500 max-w-xs mb-6">Omni-channel marketing campaigns driven by intelligent user behavior analysis.</p>
+      <div className="flex gap-4">
+        <div className="text-center">
+          <div className="text-xl font-bold text-white">4.2x</div>
+          <div className="text-[9px] text-zinc-500 uppercase tracking-widest">ROI</div>
+        </div>
+        <div className="w-px h-8 bg-white/10" />
+        <div className="text-center">
+          <div className="text-xl font-bold text-white">28k</div>
+          <div className="text-[9px] text-zinc-500 uppercase tracking-widest">New Leads</div>
+        </div>
+        <div className="w-px h-8 bg-white/10" />
+        <div className="text-center">
+          <div className="text-xl font-bold text-white">-35%</div>
+          <div className="text-[9px] text-zinc-500 uppercase tracking-widest">CPA</div>
+        </div>
+      </div>
     </div>
   );
 }
@@ -144,9 +288,8 @@ function ProjectCard({ project, delay }: { project: any; delay: number }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 15 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay }}
-      viewport={{ once: true }}
       className={`rounded-xl border p-3 flex flex-col ${colorMap[project.color] || colorMap.blue}`}
     >
       <div className="flex items-center justify-between mb-2">
@@ -191,9 +334,8 @@ function ProjectCard({ project, delay }: { project: any; delay: number }) {
             <div className="w-full h-1 rounded-full bg-white/5">
               <motion.div
                 initial={{ width: 0 }}
-                whileInView={{ width: `${project.progress}%` }}
+                animate={{ width: `${project.progress}%` }}
                 transition={{ duration: 1.5, delay: delay + 0.3 }}
-                viewport={{ once: true }}
                 className={`h-full rounded-full bg-linear-to-r ${progressColorMap[project.color]}`}
               />
             </div>
@@ -278,7 +420,7 @@ function TerminalWidget() {
       <div className="font-mono text-[10px] text-zinc-500 leading-relaxed space-y-0.5 mb-2.5">
         <div>
           <span className="text-indigo-400">$</span>{" "}
-          <span className="text-zinc-300">triveda deploy --production</span>
+          <span className="text-zinc-300">nexgen deploy --production</span>
         </div>
         <div className="text-zinc-600">Building enterprise modules...</div>
         <div>
@@ -297,3 +439,4 @@ function TerminalWidget() {
     </motion.div>
   );
 }
+

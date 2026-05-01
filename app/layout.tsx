@@ -22,23 +22,23 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Triveda Technologies — Engineering Intelligent Digital Ecosystems",
+  title: "NexGen Digital — Intelligent AI & Digital Solutions for Modern Businesses",
   description:
-    "Triveda Technologies is a premium technology consulting and digital transformation partner delivering AI-driven, scalable, and enterprise-ready solutions.",
+    "NexGen Digital is a next-generation AI and digital consulting firm delivering intelligent, scalable, and enterprise-ready technology solutions for ambitious businesses.",
   keywords:
-    "technology consulting, digital transformation, AI solutions, software development, cloud migration, Triveda Technologies",
-  authors: [{ name: "Triveda Technologies" }],
+    "AI solutions, digital transformation, intelligent automation, software development, cloud architecture, NexGen Digital",
+  authors: [{ name: "NexGen Digital" }],
   openGraph: {
-    title: "Triveda Technologies — Engineering Intelligent Digital Ecosystems",
+    title: "NexGen Digital — Intelligent AI & Digital Solutions",
     description:
-      "Premium technology consulting and digital transformation partner delivering AI-driven, scalable, and enterprise-ready solutions.",
+      "Next-generation AI and digital consulting firm delivering intelligent, scalable, and enterprise-ready technology solutions.",
     type: "website",
-    url: "https://trivedatechnologies.com",
+    url: "https://nexgendigital.io",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Triveda Technologies",
-    description: "Engineering Intelligent Digital Ecosystems",
+    title: "NexGen Digital",
+    description: "Intelligent AI & Digital Solutions for Modern Businesses",
   },
 };
 
@@ -54,7 +54,7 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
-        <link rel="canonical" href="https://trivedatechnologies.com" />
+        <link rel="canonical" href="https://nexgendigital.io" />
       </head>
       <body className="min-h-screen bg-[#030712] text-zinc-200 overflow-x-hidden" suppressHydrationWarning>
         <SmoothScrollWrapper>

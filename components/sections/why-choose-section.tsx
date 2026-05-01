@@ -22,7 +22,7 @@ export function WhyChooseSection() {
           </div>
           <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-white mb-6 leading-[1.2]">
             Why Choose{" "}
-            <span className="text-gradient">Triveda?</span>
+            <span className="text-gradient">NexGen?</span>
           </h2>
         </motion.div>
 

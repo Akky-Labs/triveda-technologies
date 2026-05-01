@@ -15,8 +15,8 @@ export function ParallaxTextStrip() {
   const x2 = useTransform(scrollYProgress, [0, 1], ["-30%", "0%"]);
 
   const lines = [
-    "TRIVEDA TECHNOLOGIES · DIGITAL TRANSFORMATION",
-    "DIGITAL · TRANSFORMATION · AI · CLOUD",
+    "NEXGEN DIGITAL · INTELLIGENT SOLUTIONS",
+    "AI · AUTOMATION · CLOUD · GROWTH",
   ];
 
   return (
